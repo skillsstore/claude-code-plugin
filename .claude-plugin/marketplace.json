@@ -1,0 +1,15 @@
+{
+  "name": "skillsstore",
+  "owner": {
+    "name": "Skillsstore",
+    "email": "antoine@mindmetrics.ai"
+  },
+  "description": "Plugins for using Skillsstore inside Claude Code.",
+  "plugins": [
+    {
+      "name": "skillsstore",
+      "source": "./plugins/skillsstore",
+      "description": "Your team's curated AI skills, in Claude Code. Routing skill + MCP connector."
+    }
+  ]
+}
