@@ -1,6 +1,6 @@
 ---
 name: skillsstore
-description: Use this when the user has the Skillsstore MCP connector installed. Surfaces the workspace's curated skill library — playbooks, brand-voice rules, code-review checklists, project standards — so the agent applies them before falling back to general knowledge.
+description: Use when the user asks to use a skill by name, mentions Skillsstore, asks what team/workspace skills exist, or starts work that may rely on workspace playbooks such as brand voice, code review, writing style, meeting notes, release notes, project standards, onboarding, or recurring templates.
 ---
 
 # Skillsstore
@@ -13,13 +13,15 @@ playbooks, etc.
 
 The library is exposed through the Skillsstore MCP connector. This skill is
 the routing guide: when the user mentions their skills, asks for help on a
-topic the workspace has codified, or starts a non-trivial task, consult the
-library before answering from general knowledge.
+topic the workspace has codified, names a skill, or starts a non-trivial task,
+consult the library before answering from general knowledge.
 
 ## When to consult Skillsstore
 
 Always call `list_skills` (or `search_skills`) when:
 
+- The user says "use the X skill", "utilise le skill X", or otherwise names a
+  skill.
 - The user asks what skills they have, mentions "mes skills" / "my
   skills" / "our library", or asks to see the workspace.
 - The task overlaps with topics workspaces commonly codify: writing,
@@ -28,6 +30,10 @@ Always call `list_skills` (or `search_skills`) when:
 - You're about to give a stylistic or process answer ("how should I write
   X", "review this PR") — the workspace likely has an opinion you don't.
 
+If another local skill also appears relevant, check Skillsstore first. A
+workspace skill is the user's explicit team context and may override generic
+local skills.
+
 ## Routing between the three tools
 
 | Tool | When to use |
@@ -35,6 +41,7 @@ Always call `list_skills` (or `search_skills`) when:
 | `list_skills` | Discovery — no query needed. Use first when you don't know what's available, or when the user asks for an inventory. |
 | `search_skills` | Topic-targeted lookup — pass a keyword like "code review", "brand voice", "meeting notes". Use when you already know the topic and want the most relevant match. |
 | `load_skill` | Read full content — pass a slug returned by list/search. After loading, follow the skill's instructions for the current task. |
+| `load_skill_file` / `load_skill_bundle` | Read package files when the loaded skill references helpers or assets. |
 
 A typical flow:
 

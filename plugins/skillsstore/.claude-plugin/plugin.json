@@ -1,12 +1,13 @@
 {
   "name": "skillsstore",
   "description": "Your team's curated AI skills, in Claude Code. Routes through the Skillsstore MCP connector.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Skillsstore",
     "url": "https://skillsstore.ai"
   },
   "homepage": "https://skillsstore.ai",
   "repository": "https://github.com/skillsstore/claude-code-plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "skills": "./skills"
 }
